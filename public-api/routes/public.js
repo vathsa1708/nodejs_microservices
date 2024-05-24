@@ -22,7 +22,7 @@ const connectToDB = async () => {
     });
 
     await client.connect();
-    db = client.db();  // Use the default database specified in the URI
+    db = client.db();  
     console.log('Connected to MongoDB');
   } catch (error) {
     console.error('MongoDB connection error:', error);
@@ -69,7 +69,7 @@ router.get('/candidate', authenticateApiKey, async (req, res) => {
     const { api_key } = req.query;
     console.log(`Received API Key: ${api_key}`);
 
-    // Retrieve candidates directly from MongoDB
+    
     const candidates = await db.collection('candidates').find({ user: api_key }).toArray();
     console.log(candidates);
 
